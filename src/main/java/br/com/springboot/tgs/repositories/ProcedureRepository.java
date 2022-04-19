@@ -1,4 +1,4 @@
-package br.com.springboot.tgs.repository;
+package br.com.springboot.tgs.repositories;
 
 import java.util.List;
 
