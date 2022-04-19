@@ -17,11 +17,6 @@ import br.com.springboot.tgs.repository.ProcedureRepository;
 @RestController
 @RequestMapping("/procedures")
 public class ProcedureController {
-  // GET
-  // POST
-  // PUT
-  // DELETE
-  // PATCH
 
   @Autowired
   private ProcedureRepository procedureRepository;
