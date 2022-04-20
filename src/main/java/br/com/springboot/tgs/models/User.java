@@ -1,4 +1,4 @@
-package br.com.springboot.tgs.entities;
+package br.com.springboot.tgs.models;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -18,13 +18,18 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "dentists")
-public class Dentist {
+@Table(name = "users")
+public class User {
 
     @Id
-    private String cro;
+    private String userId;
+
+    private String document;
     private String name;
     private String surname;
+    private String email;
+    private String telephone;
+    private String cellphone;
     private String expertise;
     private Boolean status;
 
@@ -32,13 +37,22 @@ public class Dentist {
     private String password;
 
 
-    // CRO
-    public String getCro() {
-        return cro;
+    //USER ID
+    public String getUserId() {
+        return userId;
     }
 
-    public void setCro(String cro) {
-        this.cro = cro;
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    //DOCUMENT (CRO || CPF)
+    public String getDocument() {
+        return document;
+    }
+
+    public void setDocument(String document) {
+        this.document = document;
     }
 
     // NAME
@@ -57,6 +71,33 @@ public class Dentist {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    //EMAIL
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    //TELEPHONE
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    //CELLPHONE
+    public String getCellphone() {
+        return cellphone;
+    }
+
+    public void setCellphone(String cellphone) {
+        this.cellphone = cellphone;
     }
 
     // EXPERTISE

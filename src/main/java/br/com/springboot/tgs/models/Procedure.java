@@ -1,4 +1,4 @@
-package br.com.springboot.tgs.entities;
+package br.com.springboot.tgs.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -57,6 +57,5 @@ public class Procedure {
 
   public void setStatus(Boolean status) {
     this.status = status;
-
   }
 }
