@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.springboot.tgs.entities.Patient;
+import br.com.springboot.tgs.entities.models.Patient;
 import br.com.springboot.tgs.models.RestControllerModel;
 import br.com.springboot.tgs.repositories.PatientRepository;
 
