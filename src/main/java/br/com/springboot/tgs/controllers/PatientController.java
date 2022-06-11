@@ -38,7 +38,7 @@ public class PatientController implements RestControllerModel<Patient, String> {
   public ResponseEntity<Object> findById(@PathVariable("cpf") String cpf) {
     try {
       if (cpf == null || cpf.isEmpty() || !ValidateController.validateCPF(cpf)) {
-        throw new IllegalArgumentException("CPF is invalid");
+        throw new IllegalArgumentException("CPF inválido");
       }
 
       Optional<Patient> patientFind = patientRepository.findById(cpf);
@@ -48,7 +48,7 @@ public class PatientController implements RestControllerModel<Patient, String> {
 
         return ResponseEntity.status(HttpStatus.OK).body(patientFind.get());
       } else {
-        throw new IllegalArgumentException("Patient not found");
+        throw new IllegalArgumentException("Paciente não encontrado");
       }
     } catch (Exception e) {
       LOGGER.info("Patient not found - " + e);
@@ -107,7 +107,7 @@ public class PatientController implements RestControllerModel<Patient, String> {
   public ResponseEntity<Object> remove(@RequestBody Patient p) {
     try {
       if (p.getCpf() == null || p.getCpf().isEmpty() || !ValidateController.validateCPF(p.getCpf())) {
-        throw new IllegalArgumentException("CPF is invalid");
+        throw new IllegalArgumentException("CPF inválido");
       }
 
       Patient patient = patientRepository.findById(p.getCpf()).get();
@@ -134,74 +134,74 @@ public class PatientController implements RestControllerModel<Patient, String> {
    */
   private void validatePatient(Patient patient) {
     if (patient.getCpf() == null || patient.getCpf().isEmpty() || !ValidateController.validateCPF(patient.getCpf())) {
-      throw new IllegalArgumentException("CPF is invalid");
+      throw new IllegalArgumentException("CPF inválido");
     }
 
     if (patient.getRg() == null || patient.getRg().isEmpty() || !ValidateController.validateRG(patient.getRg())) {
-      throw new IllegalArgumentException("RG is invalid");
+      throw new IllegalArgumentException("RG inválido");
     }
 
     if (patient.getName() == null || patient.getName().isEmpty()
         || !ValidateController.validateText(patient.getName())) {
-      throw new IllegalArgumentException("Name is invalid");
+      throw new IllegalArgumentException("Nome inválido");
     }
 
     if (patient.getSurname() == null || patient.getSurname().isEmpty()
         || !ValidateController.validateText(patient.getSurname())) {
-      throw new IllegalArgumentException("Surname is invalid");
+      throw new IllegalArgumentException("Sobrenome inválido");
     }
 
     if (patient.getNickname() != null && !patient.getNickname().isEmpty()
         && !ValidateController.validateText(patient.getNickname())) {
-      throw new IllegalArgumentException("Nickname invalid");
+      throw new IllegalArgumentException("Apelido inválido");
     }
 
     if (patient.getEmail() != null && !patient.getEmail().isEmpty()
         && !ValidateController.validateEmail(patient.getEmail())) {
-      throw new IllegalArgumentException("Email invalid");
+      throw new IllegalArgumentException("Email inválido");
     }
 
     if (patient.getTelephone() != null && !patient.getTelephone().isEmpty()
         && !ValidateController.validateTelephone(patient.getTelephone())) {
-      throw new IllegalArgumentException("Telephone invalid");
+      throw new IllegalArgumentException("Telefone inválido");
     }
 
     if (patient.getCellphone() == null || patient.getCellphone().isEmpty()
         || !ValidateController.validateCellphone(patient.getCellphone())) {
-      throw new IllegalArgumentException("Cellphone is invalid");
+      throw new IllegalArgumentException("Celular inválido");
     }
 
     if (patient.getStreet() == null || patient.getStreet().isEmpty()
         || !ValidateController.validateText(patient.getStreet())) {
-      throw new IllegalArgumentException("Street is invalid");
+      throw new IllegalArgumentException("Rua inválida");
     }
 
     if (patient.getNeighborhood() == null || patient.getNeighborhood().isEmpty()
         || !ValidateController.validateText(patient.getNeighborhood())) {
-      throw new IllegalArgumentException("Neighborhood is invalid");
+      throw new IllegalArgumentException("Bairro inválido");
     }
 
     if (patient.getCity() == null || patient.getCity().isEmpty()
         || !ValidateController.validateText(patient.getCity())) {
-      throw new IllegalArgumentException("City is invalid");
+      throw new IllegalArgumentException("Cidade inválida");
     }
 
     if (patient.getDistrict() == null || patient.getDistrict().isEmpty() || patient.getDistrict().length() > 2
         || !ValidateController.validateText(patient.getDistrict())) {
-      throw new IllegalArgumentException("District is invalid");
+      throw new IllegalArgumentException("Estado inválido");
     }
 
     if (patient.getCep() == null || patient.getCep().isEmpty() || !ValidateController.validateCEP(patient.getCep())) {
-      throw new IllegalArgumentException("CEP is invalid");
+      throw new IllegalArgumentException("CEP inválido");
     }
 
     if (patient.getNumber() == null) {
-      throw new IllegalArgumentException("Number is invalid");
+      throw new IllegalArgumentException("Número inválido");
     }
 
     if (patient.getComplement() != null && !patient.getComplement().isEmpty()
         && !ValidateController.validateTextAndNumber(patient.getComplement())) {
-      throw new IllegalArgumentException("Complement is invalid");
+      throw new IllegalArgumentException("Complemento inválido");
     }
   }
 }

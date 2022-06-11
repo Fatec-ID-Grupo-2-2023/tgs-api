@@ -47,7 +47,7 @@ public class DentistController implements RestControllerModel<User, String> {
         try {
             if (document == null || document.isEmpty()
                     || !ValidateController.validateCRO(document)) {
-                throw new IllegalArgumentException("Document is invalid");
+                throw new IllegalArgumentException("Documento inválido");
             }
 
             String userId = PREFIX_DENTIST_USER_ID + document;
@@ -59,7 +59,7 @@ public class DentistController implements RestControllerModel<User, String> {
 
                 return ResponseEntity.status(HttpStatus.OK).body(dentistFind.get());
             } else {
-                throw new IllegalArgumentException("Dentist not found");
+                throw new IllegalArgumentException("Dentista não encontrado");
             }
         } catch (Exception e) {
             LOGGER.info("Dentist not found - " + e);
@@ -126,12 +126,10 @@ public class DentistController implements RestControllerModel<User, String> {
     @Override
     @PostMapping("/remove")
     public ResponseEntity<Object> remove(@RequestBody User u) {
-        try {
-            u.setUserId(PREFIX_DENTIST_USER_ID + u.getDocument());
-
+        try {        
             if (u.getDocument() == null || u.getDocument().isEmpty()
                     || !ValidateController.validateCRO(u.getDocument())) {
-                throw new IllegalArgumentException("Document is invalid");
+                throw new IllegalArgumentException("Documento inválido");
             }
 
             u.setUserId(PREFIX_DENTIST_USER_ID + u.getDocument());
@@ -162,36 +160,36 @@ public class DentistController implements RestControllerModel<User, String> {
     private void validateDentist(User dentist) {
         if (dentist.getDocument() == null || dentist.getDocument().isEmpty()
                 || !ValidateController.validateCRO(dentist.getDocument())) {
-            throw new IllegalArgumentException("Document is invalid");
+            throw new IllegalArgumentException("Documento inválido");
         }
 
         if (dentist.getName() == null || dentist.getName().isEmpty()
                 || !ValidateController.validateText(dentist.getName())) {
-            throw new IllegalArgumentException("Name is invalid");
+            throw new IllegalArgumentException("Nome inválido");
         }
 
         if (dentist.getSurname() == null || dentist.getSurname().isEmpty()
                 || !ValidateController.validateText(dentist.getSurname())) {
-            throw new IllegalArgumentException("Surname is invalid");
+            throw new IllegalArgumentException("Sobrenome inválido");
         }
 
         if (dentist.getEmail() == null || dentist.getEmail().isEmpty()
                 || !ValidateController.validateEmail(dentist.getEmail())) {
-            throw new IllegalArgumentException("Email is invalid");
+            throw new IllegalArgumentException("Email inválido");
         }
 
         if (dentist.getTelephone() != null && !dentist.getTelephone().isEmpty()
                 && !ValidateController.validateTelephone(dentist.getTelephone())) {
-            throw new IllegalArgumentException("Telephone is invalid");
+            throw new IllegalArgumentException("Telefone inválido");
         }
 
         if (dentist.getExpertise() != null && !dentist.getExpertise().isEmpty()
                 && !ValidateController.validateText(dentist.getExpertise())) {
-            throw new IllegalArgumentException("Expertise is invalid");
+            throw new IllegalArgumentException("Especialidade inválida");
         }
 
         if (dentist.getStatus() == null) {
-            throw new IllegalArgumentException("Status is invalid");
+            throw new IllegalArgumentException("Status inválido");
         }
     }
 }

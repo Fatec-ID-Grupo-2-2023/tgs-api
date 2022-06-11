@@ -45,7 +45,7 @@ public class ProcedureController implements RestControllerModel<Procedure, Integ
 
                 return ResponseEntity.status(HttpStatus.OK).body(procedureFind.get());
             } else {
-                throw new IllegalArgumentException("Procedure not found");
+                throw new IllegalArgumentException("Procedimento não encontrado");
             }
         } catch (Exception e) {
             LOGGER.info("Procedure not found - " + e);
@@ -124,16 +124,16 @@ public class ProcedureController implements RestControllerModel<Procedure, Integ
     private void validateProcedure(Procedure procedure) {
         if (procedure.getTitle() == null || procedure.getTitle().isEmpty()
                 || !ValidateController.validateText(procedure.getTitle())) {
-            throw new IllegalArgumentException("Title is invalid");
+            throw new IllegalArgumentException("Título inválido");
         }
 
         if (procedure.getDescription() != null && !procedure.getDescription().isEmpty()
                 && !ValidateController.validateText(procedure.getDescription())) {
-            throw new IllegalArgumentException("Description is invalid");
+            throw new IllegalArgumentException("Descrição inválida");
         }
 
         if (procedure.getStatus() == null) {
-            throw new IllegalArgumentException("Status is invalid");
+            throw new IllegalArgumentException("Status inválido");
         }
     }
 }

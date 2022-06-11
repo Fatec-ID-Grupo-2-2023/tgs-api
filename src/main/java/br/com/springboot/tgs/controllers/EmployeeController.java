@@ -44,7 +44,7 @@ public class EmployeeController implements RestControllerModel<User, String> {
   public ResponseEntity<Object> findById(@PathVariable("document") String document) {
     try {
       if (document == null || document.isEmpty() || !ValidateController.validateCPF(document)) {
-        throw new IllegalArgumentException("Document is invalid");
+        throw new IllegalArgumentException("Documento inválido");
       }
 
       String userId = PREFIX_EMPLOYEE_USER_ID + document;
@@ -56,7 +56,7 @@ public class EmployeeController implements RestControllerModel<User, String> {
 
         return ResponseEntity.status(HttpStatus.OK).body(employeeFind.get());
       } else {
-        throw new IllegalArgumentException("Employee not found");
+        throw new IllegalArgumentException("Funcionario não encontrado");
       }
     } catch (Exception e) {
       LOGGER.info("Employee not found - " + e);
@@ -125,7 +125,7 @@ public class EmployeeController implements RestControllerModel<User, String> {
   public ResponseEntity<Object> remove(@RequestBody User u) {
     try {
       if (u.getDocument() == null || u.getDocument().isEmpty() || !ValidateController.validateCPF(u.getDocument())) {
-        throw new IllegalArgumentException("Document is invalid");
+        throw new IllegalArgumentException("Documento inválido");
       }
 
       u.setUserId(PREFIX_EMPLOYEE_USER_ID + u.getDocument());
@@ -154,36 +154,36 @@ public class EmployeeController implements RestControllerModel<User, String> {
   private void validateEmployee(User employee) {
     if (employee.getDocument() == null || employee.getDocument().isEmpty()
         || !ValidateController.validateCPF(employee.getDocument())) {
-      throw new IllegalArgumentException("Document is invalid");
+      throw new IllegalArgumentException("Documento inválido");
     }
 
     if (employee.getName() == null || employee.getName().isEmpty()
         || !ValidateController.validateText(employee.getName())) {
-      throw new IllegalArgumentException("Name is invalid");
+      throw new IllegalArgumentException("Nome inválido");
     }
 
     if (employee.getSurname() == null || employee.getSurname().isEmpty()
         || !ValidateController.validateText(employee.getSurname())) {
-      throw new IllegalArgumentException("Surname is invalid");
+      throw new IllegalArgumentException("Sobrenome inválido");
     }
 
     if (employee.getEmail() == null || employee.getEmail().isEmpty()
         || !ValidateController.validateEmail(employee.getEmail())) {
-      throw new IllegalArgumentException("Email is invalid");
+      throw new IllegalArgumentException("Email inválido");
     }
 
     if (employee.getTelephone() != null && !employee.getTelephone().isEmpty()
         && !ValidateController.validateTelephone(employee.getTelephone())) {
-      throw new IllegalArgumentException("Telephone is invalid");
+      throw new IllegalArgumentException("Telefone inválido");
     }
 
     if (employee.getExpertise() != null && !employee.getExpertise().isEmpty()
         && !ValidateController.validateText(employee.getExpertise())) {
-      throw new IllegalArgumentException("Expertise is invalid");
+      throw new IllegalArgumentException("Especialidade inválida");
     }
 
     if (employee.getStatus() == null) {
-      throw new IllegalArgumentException("Status is invalid");
+      throw new IllegalArgumentException("Status inválido");
     }
   }
 }

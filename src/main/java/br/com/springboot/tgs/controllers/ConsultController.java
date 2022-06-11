@@ -51,7 +51,7 @@ public class ConsultController implements RestControllerModel<Consult, Integer> 
 
                 return ResponseEntity.status(HttpStatus.OK).body(consultFind.get());
             } else {
-                throw new IllegalArgumentException("Consult not found");
+                throw new IllegalArgumentException("Consulta não encontrada");
             }
         } catch (Exception e) {
             LOGGER.info("Consult not found - " + e);
@@ -203,7 +203,7 @@ public class ConsultController implements RestControllerModel<Consult, Integer> 
             return ResponseEntity.status(HttpStatus.OK).body(HttpStatus.OK);
         } catch (Exception e) {
             LOGGER.error("Create consult fail - ", e);
-            throw new IllegalArgumentException("Create consult fail - " + e);
+            throw new IllegalArgumentException("Falha ao criar consulta - " + e);
         }
     }
 
@@ -257,7 +257,7 @@ public class ConsultController implements RestControllerModel<Consult, Integer> 
         } catch (Exception e) {
             LOGGER.error("Remove consult fail - ", e);
 
-            throw new IllegalArgumentException(e);
+            throw new IllegalArgumentException("Falha ao remover consulta - " + e);
         }
     }
 
@@ -269,7 +269,7 @@ public class ConsultController implements RestControllerModel<Consult, Integer> 
     private void validateConsult(ConsultPlain consult) {
         if (consult.getPatient().getCpf() == null || consult.getPatient().getCpf().isEmpty()
                 || !ValidateController.validateCPF(consult.getPatient().getCpf())) {
-            throw new IllegalArgumentException("Patient is invalid");
+            throw new IllegalArgumentException("CPF inválido");
         }
 
         try {
@@ -279,7 +279,7 @@ public class ConsultController implements RestControllerModel<Consult, Integer> 
         }
 
         if (consult.getStatus() == null) {
-            throw new IllegalArgumentException("Status is invalid");
+            throw new IllegalArgumentException("Status inválido");
         }
     }
 
@@ -296,13 +296,13 @@ public class ConsultController implements RestControllerModel<Consult, Integer> 
         if (dentistId == null || dentistId.isEmpty()
                 || !DentistController.PREFIX_DENTIST_USER_ID.equals(dentistIdSplited[0] + "-")
                 || !ValidateController.validateCRO(dentistIdSplited[1])) {
-            throw new IllegalArgumentException("Dentist is invalid");
+            throw new IllegalArgumentException("Dentista inválido");
         }
 
         if (employeeId == null || employeeId.isEmpty()
                 || !EmployeeController.PREFIX_EMPLOYEE_USER_ID.equals(employeeIdSplited[0] + "-")
                 || !ValidateController.validateCPF(employeeIdSplited[1])) {
-            throw new IllegalArgumentException("Employee is invalid");
+            throw new IllegalArgumentException("Funcionário inválido");
         }
     }
 }
