@@ -126,7 +126,7 @@ public class ConsultController implements RestControllerModel<Consult, Integer> 
                     LocalDateTime currentDateTime = LocalDateTime
                             .parse(schedule.getStartDate().toString() + " " + currentWorkTime.toString(), formatter);
 
-                    Consult consult = new Consult(schedule.getDentist(), currentDateTime, schedule.getEmployee(), true);
+                    Consult consult = new Consult(schedule.getDentist(), currentDateTime, schedule.getEmployee(), false);
 
                     createAndUpdate(consult);
 
@@ -143,7 +143,7 @@ public class ConsultController implements RestControllerModel<Consult, Integer> 
                     LocalDateTime currentDateTime = LocalDateTime
                             .parse(schedule.getStartDate().toString() + " " + currentWorkTime.toString(), formatter);
 
-                    Consult consult = new Consult(schedule.getDentist(), currentDateTime, schedule.getEmployee(), true);
+                    Consult consult = new Consult(schedule.getDentist(), currentDateTime, schedule.getEmployee(), false);
 
                     createAndUpdate(consult);
 
