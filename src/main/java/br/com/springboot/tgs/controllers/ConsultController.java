@@ -126,7 +126,8 @@ public class ConsultController implements RestControllerModel<Consult, Integer> 
                     LocalDateTime currentDateTime = LocalDateTime
                             .parse(schedule.getStartDate().toString() + " " + currentWorkTime.toString(), formatter);
 
-                    Consult consult = new Consult(schedule.getDentist(), currentDateTime, schedule.getEmployee(), false);
+                    Consult consult = new Consult(schedule.getDentist(), currentDateTime, schedule.getEmployee(),
+                            false);
 
                     createAndUpdate(consult);
 
@@ -143,7 +144,8 @@ public class ConsultController implements RestControllerModel<Consult, Integer> 
                     LocalDateTime currentDateTime = LocalDateTime
                             .parse(schedule.getStartDate().toString() + " " + currentWorkTime.toString(), formatter);
 
-                    Consult consult = new Consult(schedule.getDentist(), currentDateTime, schedule.getEmployee(), false);
+                    Consult consult = new Consult(schedule.getDentist(), currentDateTime, schedule.getEmployee(),
+                            false);
 
                     createAndUpdate(consult);
 
@@ -299,9 +301,12 @@ public class ConsultController implements RestControllerModel<Consult, Integer> 
             throw new IllegalArgumentException("Dentista inválido");
         }
 
-        if (employeeId == null || employeeId.isEmpty()
+        if ((employeeId == null || employeeId.isEmpty()
                 || !EmployeeController.PREFIX_EMPLOYEE_USER_ID.equals(employeeIdSplited[0] + "-")
-                || !ValidateController.validateCPF(employeeIdSplited[1])) {
+                || !ValidateController.validateCPF(employeeIdSplited[1]))
+                && (dentistId == null || dentistId.isEmpty()
+                        || !DentistController.PREFIX_DENTIST_USER_ID.equals(dentistIdSplited[0] + "-")
+                        || !ValidateController.validateCRO(dentistIdSplited[1]))) {
             throw new IllegalArgumentException("Funcionário inválido");
         }
     }
