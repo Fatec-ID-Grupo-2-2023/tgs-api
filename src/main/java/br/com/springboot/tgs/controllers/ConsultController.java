@@ -216,9 +216,9 @@ public class ConsultController implements RestControllerModel<Consult, Integer> 
      * @return - Retorna uma mensagem de sucesso ou erro
      */
     @PostMapping("/remove")
-    public ResponseEntity<Object> removeAppointment(@RequestBody Integer id) {
-        try {
-            Consult consult = this.consultRepository.findById(id).get();
+    public ResponseEntity<Object> removeAppointment(@RequestBody ConsultPlain consultPlain) {
+        try {            
+            Consult consult = this.consultRepository.findById(consultPlain.getId()).get();
 
             remove(consult);
             return ResponseEntity.status(HttpStatus.OK).body(HttpStatus.OK);
